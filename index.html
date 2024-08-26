@@ -1,0 +1,460 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500&family=Nunito&family=Palanquin+Dark:wght@500&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Nike Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"/>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+      function addToCart(productId, productName, productPrice, productImage) {
+
+        var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        var existingProduct = cart.find(product => product.id === productId);
+
+        if (existingProduct) {
+         
+            confirm('Product is already in the cart!');
+        } else {
+     
+            cart.push({ id: productId, name: productName, price: productPrice, image: productImage });
+
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(productName+' add to the cart');
+        }
+    }
+    </script>
+    <style>
+        p{
+            margin-top: -10px;
+        }
+       .card-body{
+        height: 250px;
+        background-color: #EDE8F5;
+       }
+       a{
+        color: #fff;
+        border: none;
+        text-decoration: none;
+       }
+       .card{
+        box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.2), 0 20px 60px 0 rgba(0, 0, 0, 0.19);
+       }
+       .surajbtn{
+        background:transparent; border:3px solid #3D52A0; color:#3D52A0;
+        border-radius: 10px;
+       }
+    </style>
+</head>
+
+<body>
+    <nav style="background-color: black; height:140px;" id="nav" class="fixed-top">
+        <div class="navTop">
+            <div class="navItem">
+                 <img src="img/sabby-banner.gif" alt="" width="100px"> 
+            </div>
+            <div class="navItem">
+             
+                </div>
+            </div>
+            <div class="navItem">
+                <span  class="limitedOffer">An Ode to Bade Sheher Ki Ladkiyaan</span>
+            </div>
+            <div style="display: flex; justify-content: right;" class="navItem">
+              <button style="margin-top: -35px;" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i style="font-size: 25px;color: white;" class="bi bi-bag"></i></button></div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="container p-3 rounded cart">
+      <div class="row no-gutters">
+          <div class="col-md-8">
+              <div class="product-details mr-2">
+                <div style="width: 175%;" class="d-flex justify-content-between align-items-center p-2 items rounded">
+                  <div class="container-fluid">
+                          <div  id="cartDetails" class="container mt-3"></div>
+                          </div>
+                  </div>
+                  <div style="margin-top: 30px;" class="container-fluid">
+                    <button  type="button" class="btn btn-primary" id="refreshCartBtn">Refresh</button>
+                  </div>
+          
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="navBottom">
+            <h3 class="menuItem"><a href="#home">Home</a></h3>
+            <h3 class="menuItem"><a href="#about">About Us</a></h3>
+            <h3 class="menuItem"><a href="#contact">Contact Us</a></h3>
+        </div>
+    </nav>
+
+    <div style="margin-top: 130px;" class="slideshow-container">
+
+     
+      <div class="mySlides1 fade1">
+      
+        <img src="img/img1.jpg" style="width:100%; height: 400px;">
+        
+      </div>
+    
+      <div class="mySlides1 fade1">
+       
+        <img src="img/img2.jpg" style="width:100%; height: 400px;">
+        
+      </div>
+    
+      <div class="mySlides1 fade1">
+        
+        <img src="img/img3.jpg" style="width:100%; height: 400px;">
+      </div>
+    
+     
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    
+ 
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    
+ 
+   
+    <div class="features">
+        <div class="feature">
+            <img src="./img/shipping.png" alt="" class="featureIcon">
+            <span class="featureTitle">FREE SHIPPING</span>
+            <span class="featureDesc">Free worldwide shipping on all orders.</span>
+        </div>
+        <div class="feature">
+            <img class="featureIcon" src="./img/return.png" alt="">
+            <span class="featureTitle">30 DAYS RETURN</span>
+            <span class="featureDesc">No question return and easy refund in 14 days.</span>
+        </div>
+        <div class="feature">
+            <img class="featureIcon" src="./img/gift.png" alt="">
+            <span class="featureTitle">GIFT CARDS</span>
+            <span class="featureDesc">Buy gift cards and use coupon codes easily.</span>
+        </div>
+        <div class="feature">
+            <img class="featureIcon" src="./img/contact.png" alt="">
+            <span class="featureTitle">CONTACT US!</span>
+            <span class="featureDesc">Keep in touch via email and support system.</span>
+        </div>
+    </div>
+
+ 
+      <div style="background-color: #EDE8F5;" class="features">
+        <div class="galleryItem">
+          
+        <div class="card">
+            <img src="img/1.png" class="card-img-top" alt="...">
+            <div style="background-color: #EDE8F5;" class="card-body" >
+              <h5 class="card-title">Autorides</h5>
+              <p class="card-text">Daily ritual to start and end the day.</p>
+              
+              <div style="display: flex; gap:25px;" class="form-group">
+               
+                <div class="dropdown">
+                    <button style="background:transparent; border:3px solid #3D52A0; color:#3D52A0;"  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select Size
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                    </ul>
+                  </div>
+                <div style="width:100px;" class="input-group quantity-selector surajbtn surajbtn">
+                    <input style="background:  #EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                  
+                  </div>
+              </div>
+              <center>
+              <button type="button" class="btn surajbtn" onclick="addToCart('product1','Item 1','25.00','img/1.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+                cart</button></center></div>
+              </div>
+            </div>
+        <div class="galleryItem">
+          
+        <div class="card">
+            <img src="img/2.png" class="card-img-top" alt="...">
+            <div class="card-body" >
+              <h5 class="card-title">Metro blues</h5>
+              <p class="card-text">Sometimes mindless scrolling is an act of self-preservation.</p>
+              
+              <div style="display: flex; gap:25px;" class="form-group">
+                
+                <div class="dropdown">
+                    <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select Size
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                    </ul>
+                  </div>
+                <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                    <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                   
+                  </div>
+              </div>
+              <center>
+                <button type="button" class="btn surajbtn" onclick="addToCart('product3','Item 1','25.00','img/1.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+                  cart</button></center></div>
+              </div>
+        
+        </div>
+        <div class="galleryItem">
+           
+                <div class="card">
+                    <img src="img/3.png" class="card-img-top" alt="...">
+                    <div class="card-body" >
+                      <h5 class="card-title">Somewhere in Humayunpur</h5>
+                      <p class="card-text">Warmth of their hand and soft lights.</p>
+                     
+                      <div style="display: flex; gap:25px;" class="form-group">
+                      
+                        <div class="dropdown">
+                            <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                              Select Size
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                            </ul>
+                          </div>
+                        <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                            <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                         
+                          </div>
+                      </div>
+                      <center>
+                        <button type="button" class="btn surajbtn" onclick="addToCart('product3','Item 3','25.00','img/3.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+                          cart</button></center></div>
+                      </center></div>
+                      </div>
+        </div></div>
+        <div style="background-color: #EDE8F5;" class="features space">
+        <div class="galleryItem">
+          
+        <div class="card">
+            <img src="img/4.png" class="card-img-top" alt="...">
+            <div class="card-body" >
+              <h5 class="card-title">Waiting</h5>
+              <p class="card-text">As the day ends the sky welcomes you home.</p>
+             
+              <div style="display: flex; gap:25px;" class="form-group">
+              \
+                <div class="dropdown">
+                    <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select Size
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                    </ul>
+                  </div>
+                <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                    <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                   
+                  </div>
+              </div>
+              <center>
+                <button type="button" class="btn surajbtn" onclick="addToCart('product4','Item 4','25.00','img/4.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+                  cart</button></center></div>
+              </div>
+        </div>
+        <div class="galleryItem">
+
+     
+        <div class="card">
+            <img src="img/5.png" class="card-img-top" alt="...">
+            <div class="card-body" >
+              <h5 class="card-title">In the crowd</h5>
+              <p class="card-text">When life get too much, just look up.</p>
+               
+              <div style="display: flex; gap:25px;" class="form-group">
+               
+                <div class="dropdown">
+                    <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select Size
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                    </ul>
+                  </div>
+                <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                    <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                   
+                  </div>
+              </div>
+              <center>
+                <button type="button" class="btn surajbtn" onclick="addToCart('product5','Item 5','25.00','img/5.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+                  cart</button></center></div>
+              </div>
+        </div>
+        <div class="galleryItem">
+            <div class="card">
+        
+                <img src="img/6.png" class="card-img-top" alt="...">
+            <div class="card-body" >
+              <h5 class="card-title">Caretaker</h5>
+              <p class="card-text">An act of unconditional love.</p>
+               
+              <div style="display: flex; gap:25px;" class="form-group">
+               
+                <div class="dropdown">
+                    <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      Select Size
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                    </ul>
+                  </div>
+                <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                    <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+                   
+                  </div>
+              </div>
+              <center>
+                <button type="button" class="btn surajbtn" onclick="addToCart('product6','Item 6','25.00','img/6.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+                  cart</button></center></div>
+              </div>
+        </div>
+    </div>
+    <div style="background-color: #EDE8F5;" class="features space">
+        <div class="galleryItem">
+            <div class="card">
+        
+        <img src="img/7.png" class="card-img-top" alt="...">
+        <div class="card-body" >
+          <h5 class="card-title">Lovers in the night</h5>
+          <p class="card-text">November lights, the chill in the air, smell of saptrani arrives.</p>
+           
+          <div style="display: flex; gap:25px;" class="form-group">
+           
+            <div class="dropdown">
+                <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Select Size
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                </ul>
+              </div>
+            <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+               
+              </div>
+          </div>
+          <center>
+            <button type="button" class="btn surajbtn" onclick="addToCart('product7','Item 7','25.00','img/7.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+              cart</button></center></div>
+          </div>
+    </div>
+          
+          <div class="galleryItem">
+           
+         <div class="card">
+            <img src="img/8.png" class="card-img-top" alt="...">
+        <div class="card-body" >
+          <h5 class="card-title">Evening chai</h5>
+          <p class="card-text">Chai, cardamom, little ginger and rains.</p>
+           
+          <div style="display: flex; gap:25px;" class="form-group">
+            
+            <div class="dropdown">
+                <button class="btn surajbtn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Select Size
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#" onclick="selectSize('A')">A3</a></li>
+                  <li><a class="dropdown-item" href="#" onclick="selectSize('A4')">A4</a></li>
+                </ul>
+              </div>
+            <div style="width:100px;" class="input-group quantity-selector surajbtn">
+                <input style="background-color:#EDE8F5;" type="number" id="inputQuantitySelector" class="form-control" aria-live="polite" data-bs-step="counter" name="quantity" title="quantity" value="0" min="0" max="10" step="1" data-bs-round="0" aria-label="Quantity selector">
+               
+              </div>
+          </div>
+          <center>
+            <button type="button" class="btn surajbtn" onclick="addToCart('product8','Item 8','25.00','img/8.png')"><i class="fa fa-cart-plus mr-2"></i> Add to
+              cart</button></center></div>
+          </div>
+           </div>
+           <div class="galleryItem">
+           </div>
+           </div>
+   
+    <footer style="background: #0000; width:100%;">
+        <div style="background: #000; padding-left: 20px; padding-top: 30px;" class="footerclass">
+            <div class="footersj">
+                <h1 id="about" style="color: #fff;" class="fMenuTitle">About Us</h1>
+                <p style="padding-right: 20px; color: #fff;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat quisquam neque, ut quos illum provident nostrum nisi itaque perspiciatis ex maiores culpa voluptas facilis quaerat. Maxime nobis doloribus consequatur ullam.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat quisquam neque, ut quos illum provident nostrum nisi itaque perspiciatis ex maiores culpa voluptas facilis quaerat. Maxime nobis doloribus consequatur ullam.</p>
+                <h1 id="contact" style="color: #fff;" class="fMenuTitle">Contact Us</h1>
+                <div class="contactitems">
+                   <div style="display: flex;"> <p style="margin-right: 0.5%; color:#fff ; font-weight: 500;">Phone No:</p>
+                    <p style="margin-right: 5%; color: #fff;">991742174</p></div>
+                    <div style="display: flex;"><p style="margin-right: 0.5%;  color:#fff ; font-weight: 500;">Email:</p>
+                    <p style="margin-right: 5%; color: #fff;">abc@gmail.com</p></div>
+                    <div style="display: flex;"><p style="margin-right: 0.5%;  color:#fff ; font-weight: 500;">Whatsapp:</p>
+                    <p style="margin-right: 5%; color: #fff;">+9137423462</p></div>
+                </div>
+                <h1 style="color: #fff;" class="fMenuTitle">Follow Us</h1>
+                <div style="display: flex;">
+                <div class="fIcons">
+                    <p class="fIcon"><i class="bi bi-facebook"></i></p>
+                    <p class="fIcon"><i class="bi bi-twitter-x"></i></p>
+                    <p class="fIcon"><i class="bi bi-instagram"></i></p>
+                    <p class="fIcon"><i class="bi bi-whatsapp"></i></p>
+                </div>
+            </div>
+            <center style="padding: 40px;">
+                <span style=" background-color: #0000;" class="copyright">@John Doe. All rights reserved. 2024.</span>
+            </center>
+              
+            </div>
+           
+     
+        </div>
+    </footer>
+    <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script src="cart.js"></script>
+</body>
+</html>
