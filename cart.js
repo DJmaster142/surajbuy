@@ -1,94 +1,105 @@
-window.onload = function () {
-    try {
-        // Retrieve the cart from localStorage
-        var cart = JSON.parse(localStorage.getItem('cart')) || [];
-        var cartDetailsContainer = document.getElementById('cartDetails');
+const product =[
+    {
+        id: 0,
+        Image: 'img/1.png',
+        title: 'item 1',
+        price: 25,
+    },
+    {
+        id: 1,
+        Image: 'img/2.png',
+        title: 'item 2',
+        price: 26,
+    },
+    {
+        id: 2,
+        Image: 'img/3.png',
+        title: 'item 3',
+        price: 27,
+    },
+    {
+        id: 3,
+        Image: 'img/4.png',
+        title: 'item 4',
+        price: 29,
+    },
+    {
+        id: 4,
+        Image: 'img/5.png',
+        title: 'item 5',
+        price: 25,
+    },
+    {
+        id: 5,
+        Image: 'img/6.png',
+        title: 'item 6',
+        price: 25,
+    },
+    {
+        id: 6,
+        Image: 'img/7.png',
+        title: 'item 7',
+        price: 25,
+    },
+    {
+        id: 7,
+        Image: 'img/8.png',
+        title: 'item 8',
+        price: 25,
+    },
+];
+const categories = [...new Set(product.map((item)=>{return item}))]
+let i=0;
+document.getElementById('root').innerHTML = categories.map((item)=>
+{
+    var{Image, title, price} = item;
+    return(
+        `<div class='box'>
+        <div class='img-box'>
+        <img class='images' src= ${Image}></img>
+        </div>
+        <div class='bottom'>
+        <p>${title}</p>
+        <h2>$ ${price}.00</h2>`+
+        "<button onclick='addtocart("+(i++)+")'>Add to cart</button>"+
+        `</div>
+        </div>`
+    )
+}).join('')
 
-        // Check if the cart is empty
-        if (cart.length === 0) {
-            cartDetailsContainer.innerHTML = '<p>Your cart is empty.</p>';
-        } else {
-            // Display the products in the cart
-            var cartHTML = '<ul>';
-            cart.forEach(function (product) {
-                // Verify the correctness of the image path in the src attribute
-                cartHTML += '<li>' +
-                    '<div class="d-flex flex-row"> <img class="rounded" src="' + product.image + '" alt="' + product.name + '" width="50" height="50"></div>' +
-                    '<div class="d-flex flex-row align-items-center"><span class="d-block">' + product.name +
-                    '</span> |  ' + product.price +
-                    '</li>';
-            });
-            cartHTML += '</ul>';
-            cartDetailsContainer.innerHTML = cartHTML;
-        }
-    } catch (error) {
-        // Log any errors to the console
-        console.error('Error in cart.js:', error);
-        // Optionally, display an error message to the user
-        cartDetailsContainer.innerHTML = '<p>An error occurred while loading your cart.</p>';
+var cart =[];
+
+function addtocart(a){
+    cart.push({...categories[a]});
+    displaycart();
+}
+function delElement(a){
+    cart.splice(a,1);
+    displaycart();
+}
+
+function displaycart(a){
+    let j = 0, total=0;
+    document.getElementById("count").innerHTML=cart.length;
+    if(cart.length==0){
+        document.getElementById('cartItem').innerHTML = "Your cart is empty";
+        document.getElementById("total").innerHTML = "$ "+0+".00";
     }
-};
-
-refreshCartDisplay();
-
-function refreshCartDisplay() {
-    var cartDetailsContainer = document.getElementById('cartDetails');
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Display the products in the cart
-    var cartHTML = '<ul>';
-    cart.forEach(function (product) {
-        cartHTML += '<li>' +
-                    '<div class="d-flex flex-row"> <img class="rounded" src="' + product.image + '" alt="' + product.name + '" width="50" height="50"></div>' +
-                    '<div class="d-flex flex-row align-items-center"><span class="d-block">' + product.name +
-                    '</span> |  ' + product.price +
-                    '</li>';
-    });
-    cartHTML += '</ul>';
-
-    cartDetailsContainer.innerHTML = cartHTML;
-}
-
-// Event listener for the Refresh Cart button
-document.getElementById('refreshCartBtn').addEventListener('click', function() {
-    // Clear the cart in localStorage
-    localStorage.removeItem('cart');
-
-    // Refresh the cart display
-    refreshCartDisplay();
-
-    // Optionally, you can provide feedback to the user (e.g., display a message, update UI)
-    alert('Cart has been refreshed!');
-});
-
-// Initialize the cart display on page load
-refreshCartDisplay();
-
-let slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides1");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
+    else{
+        document.getElementById('cartItem').innerHTML = cart.map((items)=>
+        {
+            var {Image, title,price} = items;
+            total=total+price;
+            document.getElementById("total").innerHTML = "$ "+total+".00";
+            return(
+                `<div class='cart-item'>
+                <div class='row-img'>
+                <img class='rowing' src=${Image}>
+                </div>
+                <p style='font-size:12px;'>${title}</p>
+                <h2 style='font-size: 15px;'>$ ${price}.00</h2>`+
+                "<i class='fa-solid fa-trash' onclick='delElement("+(j++) +")'></i></div>"
+            );
+        }).join('');
+    }
 }
